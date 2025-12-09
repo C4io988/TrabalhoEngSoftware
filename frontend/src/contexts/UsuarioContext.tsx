@@ -1,10 +1,17 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, useMemo } from "react";
+
+interface UsuarioObj {
+  cpf: string;
+  nome: string;
+  idtPapel: string;
+}
 
 interface UsuarioContextData {
   codUsuarioCPF: string;
   nomUsuario: string;
   idtPapel: string;
   tituloPagina: string;
+  usuario: UsuarioObj; // objeto conveniente
 
   setUsuario: (
     codUsuarioCPF: string,
@@ -17,15 +24,12 @@ interface UsuarioContextData {
   setTituloPagina: (titulo: string) => void;
 }
 
-// 2. Criação do contexto
 const UsuarioContext = createContext<UsuarioContextData | undefined>(undefined);
 
-// 3. Props do Provider
 interface UsuarioProviderProps {
   children: ReactNode;
 }
 
-// 4. Provider
 export const UsuarioProvider = ({ children }: UsuarioProviderProps) => {
   const [codUsuarioCPF, setCodUsuarioCPF] = useState(
     () => localStorage.getItem("codUsuarioCPF") || ""
@@ -36,27 +40,41 @@ export const UsuarioProvider = ({ children }: UsuarioProviderProps) => {
   const [idtPapel, setIdtPapel] = useState(
     () => localStorage.getItem("idtPapel") || ""
   );
-  const [tituloPagina, setTituloPagina] = useState("Título Padrão"); // Estado para o título
+  const [tituloPagina, setTituloPagina] = useState("Título Padrão");
+
+  const usuario = useMemo(
+    () => ({
+      cpf: codUsuarioCPF,
+      nome: nomUsuario,
+      idtPapel,
+    }),
+    [codUsuarioCPF, nomUsuario, idtPapel]
+  );
 
   const setUsuario = (
-    codUsuarioCPF: string,
-    nomUsuario: string,
-    idtPapel: string
+    codUsuarioCPFParam: string,
+    nomUsuarioParam: string,
+    idtPapelParam: string
   ) => {
-    setCodUsuarioCPF(codUsuarioCPF);
-    setNomUsuario(nomUsuario);
-    setIdtPapel(idtPapel);
-    localStorage.setItem("codUsuarioCPF", codUsuarioCPF);
-    localStorage.setItem("nomUsuario", nomUsuario);
-    localStorage.setItem("idtPapel", idtPapel);
+    setCodUsuarioCPF(codUsuarioCPFParam);
+    setNomUsuario(nomUsuarioParam);
+    setIdtPapel(idtPapelParam);
+    localStorage.setItem("codUsuarioCPF", codUsuarioCPFParam);
+    localStorage.setItem("nomUsuario", nomUsuarioParam);
+    localStorage.setItem("idtPapel", idtPapelParam);
   };
 
-  const setIDtPapel = (idtPapel: string) => {
-    setIdtPapel(idtPapel);
-    localStorage.setItem("idtPapel", idtPapel);
+  const setIDtPapel = (idtPapelParam: string) => {
+    setIdtPapel(idtPapelParam);
+    localStorage.setItem("idtPapel", idtPapelParam);
   };
   const limparUsuario = () => {
-    localStorage.clear();
+    setCodUsuarioCPF("");
+    setNomUsuario("");
+    setIdtPapel("");
+    localStorage.removeItem("codUsuarioCPF");
+    localStorage.removeItem("nomUsuario");
+    localStorage.removeItem("idtPapel");
   };
 
   return (
@@ -66,6 +84,7 @@ export const UsuarioProvider = ({ children }: UsuarioProviderProps) => {
         nomUsuario,
         idtPapel,
         tituloPagina,
+        usuario,
         setUsuario,
         limparUsuario,
         setIDtPapel,
@@ -77,7 +96,6 @@ export const UsuarioProvider = ({ children }: UsuarioProviderProps) => {
   );
 };
 
-// 5. Hook customizado para facilitar o uso do contexto
 export const useUsuario = () => {
   const context = useContext(UsuarioContext);
   if (!context) {

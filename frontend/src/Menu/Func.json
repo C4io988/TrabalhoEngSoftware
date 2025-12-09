@@ -1,5 +1,6 @@
 [
-  { "label": "Cadastrar Cargo", "rota": "/CadastrarCargo" },
+  { "label": "Cadastrar Medicamento", "rota": "/CadastrarCargo" },
   { "label": "Tela 1 Funcionario", "rota": "/Tela1Funcionario" },
-  { "label": "Tela 2 Funcionario", "rota": "/Tela2Funcionario" }
+  { "label": "Tela 2 Funcionario", "rota": "/Tela2Funcionario" },
+  { "label": "Tela 3 Funcionario", "rota": "/Tela3Funcionario" }
 ]

@@ -43,7 +43,7 @@ export default function ListaCargo() {
     } catch (error) {
       exibirMensagem({
         tipo: "ERRO",
-        mensagem: [`Erro inesperado ao consultar o cargo: ${error}`]
+        mensagem: [`Erro inesperado ao consultar o Medicamento: ${error}`]
       });
     }
   };
@@ -111,7 +111,7 @@ export default function ListaCargo() {
 
 
   const excluirCargo = async (codCargo: number) => {
-    const confirmado = confirm("Deseja realmente excluir este cargo?");
+    const confirmado = confirm("Deseja realmente excluir este Medicamento?");
     if (!confirmado) return;
 
     try {
@@ -129,19 +129,19 @@ export default function ListaCargo() {
     } catch (error) {
        exibirMensagem({
         tipo: "ERRO",
-        mensagem: [`Erro inesperado ao excluir o cargo: ${error}`]
+        mensagem: [`Erro inesperado ao excluir o Medicamento: ${error}`]
       });
     }
   };
 
   return (
     <div className="p-4">
-      <h2 className="text-xl font-bold mb-4">Lista de Cargos</h2>
+      <h2 className="text-xl font-bold mb-4">Medicamentos:</h2>
 
       <table className="w-full border-collapse border border-gray-400">
         <thead>
           <tr className="bg-gray-200">
-            <th className="border border-gray-400 px-4 py-2">Nome do Cargo</th>
+            <th className="border border-gray-400 px-4 py-2">Nome do Medicamento</th>
             <th className="border border-gray-400 px-4 py-2">Ações</th>
           </tr>
         </thead>
@@ -185,17 +185,17 @@ export default function ListaCargo() {
           setModoEdicao(false);
         }}
       >
-        ➕ Inserir Novo Cargo
+        ➕ Inserir Novo Medicamento
       </button>
 
       {cargoEditando && (
         <div className="mt-6 p-4 border border-gray-400 rounded">
           <h3 className="text-lg font-semibold mb-2">
-            {modoEdicao ? "Editar Cargo" : "Novo Cargo"}
+            {modoEdicao ? "Editar Medicamento" : "Novo Medicamento"}
           </h3>
 
           <label className="block mb-2">
-            Nome do Cargo:
+            Nome do Medicamento:
             <input
               type="text"
               className="w-full p-2 border border-gray-400 rounded"

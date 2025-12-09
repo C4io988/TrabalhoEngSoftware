@@ -1,7 +1,7 @@
 DB_CONFIG = {
-    "dbname": "modelo",
+    "dbname": "postgres",
     "user": "postgres",
-    "password": "postgres",
+    "password": "123",
     "host": "localhost",
     "port": "5432"
 }

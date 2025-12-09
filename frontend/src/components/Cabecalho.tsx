@@ -1,60 +1,81 @@
 import Botao from "./Botao";
 import { useNavigate } from "react-router-dom";
 import { useUsuario } from "../contexts/UsuarioContext";
+import logoInova from "../imgs/LOGO_Innova_dcdac2ae-72b0-4146-9fd5-5dba6e118f13.webp";
+import logoMinas from "../imgs/governo-de-minas-gerais-2019-logo-png_seeklogo-356274.png";
 
 interface CabecalhoProps {
   logado: boolean;
 }
 
-function obterNomePapel(idtPapel: "A" | "F" | "G"): string {
+function obterNomePapel(idtPapel: string): string {
   switch (idtPapel) {
+    case "C":
+      return "Cidadão";
     case "A":
-      return "Administrador";
-    case "F":
-      return "Funcionário";
+      return "Analista de Saúde";
     case "G":
       return "Gestor";
     default:
-      return " ";
+      return "Usuário";
   }
 }
 
 const Cabecalho = ({ logado }: CabecalhoProps) => {
   const navigate = useNavigate();
   const { nomUsuario, idtPapel } = useUsuario();
-  const desPapel = idtPapel ? obterNomePapel(idtPapel as "A" | "F" | "G") : "";
+  
+  const desPapel = idtPapel ? obterNomePapel(idtPapel) : "";
+
   const onClickBotaoSair = () => {
     navigate("/");
   };
 
   return (
-    <header className="flex items-center justify-between text-gray-600 bg-gray-200 p-4 shadow-md">
-      {/* Logo à esquerda */}
-      {/*O logo é um jpg na pasta public*/}
-      <div className="flex items-center">
-        <img src="/SeapaLogo.jpg" alt="Logo SEAPA" className="h-16 w-36 mr-4" />
+    <header className="grid grid-cols-3 items-center bg-white px-8 py-4 shadow-md border-b border-gray-100">
+      
+      {/* ESQUERDA: Logo de Minas Gerais */}
+      <div className="flex justify-start">
+        <img 
+          src={logoMinas}
+          alt="Governo de Minas Gerais" 
+          className="h-24 w-auto object-contain" 
+        />
       </div>
 
-      {/* Texto Central */}
-      <div className="flex flex-col text-center text-gray-600 border-4 border-cyan-600 500 border-opacity-50 p-4">
-        <h1 className="text-lg font-bold">
-          Sistema de Gestão de Modelo
-        </h1>
+      {/* CENTRO: Logo Inova Farma */}
+      <div className="flex justify-center items-center">
+        <img 
+          src={logoInova} 
+          alt="Logo Inova Farma" 
+          className="h-24 w-auto object-contain" 
+        />
       </div>
 
-      {logado && (
-        <>
-          {/* Perfil e Usuário */}
-          <div className="flex flex-col text-left mr-4 p-4">
-            <span>
-              {nomUsuario}-{desPapel}
-            </span>
-          </div>
-        </>
-      )}
-      {/* Botão Sair */}
-      <div>
-        <Botao titulo="Sair" onClick={onClickBotaoSair} />
+      {/* DIREITA: Info Usuário e Sair */}
+      <div className="flex justify-end items-center gap-6">
+        {/* Agrupamos tudo dentro desta verificação: Só mostra se estiver logado */}
+        {logado && (
+          <>
+            <div className="flex flex-col text-right">
+              <span className="text-sm font-semibold text-gray-800">
+                {nomUsuario || "Usuário"}
+              </span>
+              <span className="text-xs text-blue-600 font-medium bg-blue-50 px-2 py-0.5 rounded-full self-end">
+                {desPapel}
+              </span>
+            </div>
+
+            <div>
+              <button 
+                onClick={onClickBotaoSair}
+                className="text-base text-red-600 hover:text-red-800 font-medium hover:bg-red-50 px-4 py-2 rounded-lg transition-colors"
+              >
+                Sair
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </header>
   );
