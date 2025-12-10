@@ -13,9 +13,7 @@ III. cd frontend --> npm run dev
 IV. cd backend --> .\venv\Scripts\Activate.ps1 --> python app.py
 
 
-============================================================
-GUIA DE INSTALAÇÃO - INOVA FARMA (NOVA MÁQUINA)
-============================================================
+GUIA DE INSTALAÇÃO - INOVA FARMA 
 
 1. CLONAR O PROJETO
 
