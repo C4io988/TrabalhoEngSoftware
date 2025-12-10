@@ -1,4 +1,5 @@
 [
-  { "label": "Tela 1 Gestor", "rota": "/Tela1Gestor" },
-  { "label": "Tela 2 Gestor", "rota": "/Tela2Gestor" }
+  { "label": "Cadastrar Medicamento", "rota": "/TelaCadastroMedicamento" },
+  { "label": "Dashboard", "rota": "/TelaDashboard" },
+  { "label": "Usuários", "rota": "/TelaUsuarios" }
 ]

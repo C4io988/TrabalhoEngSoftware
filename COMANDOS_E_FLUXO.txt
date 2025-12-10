@@ -1,0 +1,92 @@
+============================================================
+ PROJETO INOVA FARMA - COMANDOS E FLUXO DO SISTEMA
+============================================================
+
+[PARTE 1] COMANDOS SQL ÚTEIS (PGADMIN)
+------------------------------------------------------------
+OBS: Execute estes comandos na "Query Tool" do PGAdmin.
+
+1. LIMPAR TUDO PARA APRESENTAÇÃO (RESETAR TICKETS)
+   Use este comando antes de começar a apresentar para garantir 
+   que o Analista não tenha tarefas antigas e o contador comece do 1.
+
+   DELETE FROM DocumentoSolicitacao;
+   DELETE FROM Solicitacao;
+   ALTER SEQUENCE solicitacao_idsolicitacao_seq RESTART WITH 1;
+
+
+2. EXCLUIR UM USUÁRIO ESPECÍFICO (EX: ERRO DE CADASTRO)
+   Substitua '99999999999' pelo CPF que deseja apagar.
+   
+   -- Remove tickets desse usuário primeiro
+   DELETE FROM DocumentoSolicitacao 
+   WHERE idSolicitacao IN (SELECT idSolicitacao FROM Solicitacao WHERE codUsuarioCPF = '99999999999');
+   
+   DELETE FROM Solicitacao WHERE codUsuarioCPF = '99999999999';
+   
+   -- Remove o usuário
+   DELETE FROM Usuario WHERE codUsuarioCPF = '99999999999';
+
+
+3. TRANSFORMAR USUÁRIO EM GESTOR (EMERGÊNCIA)
+   Caso precise acessar o dashboard com um usuário comum.
+   
+   UPDATE Usuario SET idtPapel = 'G' WHERE codUsuarioCPF = '11111111111';
+
+
+============================================================
+[PARTE 2] FLUXO BÁSICO DO SISTEMA (ROTEIRO)
+============================================================
+
+CENÁRIO 1: O CIDADÃO (Solicitação)
+------------------------------------------------------------
+1. Login:
+   - O Cidadão acessa o sistema.
+   - Clica em "Entrar com gov.br".
+   - Digita CPF e Senha.
+   - Redirecionamento automático para tela de Solicitação.
+
+2. Ação:
+   - Seleciona o medicamento na lista.
+   - Anexa o documento (PDF/Imagem).
+   - Clica em "Enviar".
+   - Recebe mensagem de sucesso com número do Protocolo.
+
+3. Acompanhamento:
+   - Clica em "Ver Meus Pedidos".
+   - Vê o status atual como "EM ANALISE".
+
+
+CENÁRIO 2: O ANALISTA (Avaliação)
+------------------------------------------------------------
+1. Login:
+   - Sai do Cidadão e entra com conta de Analista.
+   - Acessa o menu "Fila de Solicitações".
+
+2. Ação:
+   - Visualiza o pedido que acabou de chegar.
+   - Clica em "Avaliar".
+   - Analisa os dados (simulado) e clica em "DEFERIR" (Aprovar).
+   - O status muda visualmente na tabela.
+
+
+CENÁRIO 3: O GESTOR (Monitoramento e Cadastros)
+------------------------------------------------------------
+1. Login:
+   - Entra com conta de Gestor.
+   - Cai direto no "Dashboard".
+
+2. Visualização:
+   - Vê os cards atualizados (ex: 1 Deferido, 0 Em Análise).
+   - Vê a barra de progresso.
+
+3. Manutenção (Opcional na apresentação):
+   - Vai em "Gerenciar Usuários" para cadastrar novos funcionários.
+   - Vai em "Gerenciar Medicamentos" para adicionar novos remédios ao sistema.
+
+============================================================
+DADOS DE TESTE PADRÃO (LOGIN)
+============================================================
+Cidadão:  CPF 11111111111 | Senha 12345
+Analista: CPF 22222222222 | Senha 12345
+Gestor:   CPF 33333333333 | Senha 12345

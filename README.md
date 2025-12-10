@@ -62,5 +62,5 @@ GUIA DE INSTALAÇÃO - INOVA FARMA (NOVA MÁQUINA)
 4. TESTAR
 ------------------------------------------------------------
    - Acesse: http://localhost:5173
-   - Login Cidadão: CPF 11111111111 | Senha 123
-   - Login Analista: CPF 22222222222 | Senha 123
+   - Login Cidadão: CPF 11111111111 | Senha 12345
+   - Login Analista: CPF 22222222222 | Senha 12345

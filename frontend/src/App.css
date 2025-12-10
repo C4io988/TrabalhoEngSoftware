@@ -10,3 +10,8 @@
   padding: 0rem;
   text-align: center;
 }
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
