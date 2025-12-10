@@ -1,62 +1,35 @@
-# template-ReactVite
-Template básico para desenvolvimento 
+# Template React + Vite
+> Template básico para desenvolvimento do sistema Inova Farma.
 
+---
 
--- para ligar --
+## 🚀 Guia Rápido (Para Ligar)
+*Passo a passo para rodar o projeto no dia a dia:*
 
-I. Abrir o banco de dados (Pgadmin)
+1.  Abra o banco de dados (**PgAdmin**).
+2.  Abra **2 terminais** no seu editor.
+3.  **Terminal 1 (Frontend):**
+    ```bash
+    cd frontend
+    npm run dev
+    ```
+4.  **Terminal 2 (Backend):**
+    ```powershell
+    cd backend
+    .\venv\Scripts\Activate.ps1
+    python app.py
+    ```
 
-II. abrir 2 terminais
+---
 
-III. cd frontend --> npm run dev
+## 📚 Guia de Instalação - Inova Farma
+*Siga estes passos se for configurar o projeto pela primeira vez.*
 
-IV. cd backend --> .\venv\Scripts\Activate.ps1 --> python app.py
+### 1. Clonar o Projeto
+Faça o clone do repositório para sua máquina local usando o Git.
 
+### 2. Backend (Python/Flask)
 
-GUIA DE INSTALAÇÃO - INOVA FARMA 
-
-1. CLONAR O PROJETO
-
-------------------------------------------------------------
-2. BACKEND (PYTHON/FLASK)
-------------------------------------------------------------
-   a) Abra o terminal na pasta 'backend':
-      cd backend
-
-   b) Crie o ambiente virtual (importante para não dar conflito):
-      python -m venv venv
-
-   c) Ative o ambiente:
-      - Windows: .\venv\Scripts\activate
-      - Linux/Mac: source venv/bin/activate
-
-   d) Instale as dependências:
-      pip install -r requirements.txt
-
-   e) Configure o Banco de Dados (PostgreSQL):
-      - Abra o PGAdmin.
-      - Crie um banco chamado 'postgres' (ou o nome que estiver em config.py).
-      - Abra a Query Tool e rode o script 'BancoDados.sql' (está na raiz ou pasta backend).
-      - *IMPORTANTE:* Rode o script extra de atualização para criar as tabelas 'Medicamento' e 'Solicitacao'.
-
-   f) Inicie o servidor:
-      python app.py
-
-------------------------------------------------------------
-3. FRONTEND (REACT/VITE)
-------------------------------------------------------------
-   a) Abra um NOVO terminal na pasta 'frontend':
-      cd frontend
-
-   b) Baixe as dependências (recria a pasta node_modules):
-      npm install
-
-   c) Inicie o site:
-      npm run dev
-
-------------------------------------------------------------
-4. TESTAR
-------------------------------------------------------------
-   - Acesse: http://localhost:5173
-   - Login Cidadão: CPF 11111111111 | Senha 12345
-   - Login Analista: CPF 22222222222 | Senha 12345
+**a) Abra o terminal na pasta 'backend':**
+```bash
+cd backend
