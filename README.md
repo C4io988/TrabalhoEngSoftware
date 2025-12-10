@@ -18,8 +18,6 @@ GUIA DE INSTALAÇÃO - INOVA FARMA (NOVA MÁQUINA)
 ============================================================
 
 1. CLONAR O PROJETO
-   git clone https://github.com/SEU_USUARIO/inova-farma-backup.git
-   cd inova-farma-backup
 
 ------------------------------------------------------------
 2. BACKEND (PYTHON/FLASK)
