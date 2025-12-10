@@ -3,7 +3,7 @@
 
 ---
 
-## 🚀 Guia Rápido (Dia a Dia)
+## 🚀 Guia Rápido 
 *Passo a passo resumido para rodar o projeto se já estiver instalado.*
 
 1.  Abra o banco de dados (**PgAdmin**).
